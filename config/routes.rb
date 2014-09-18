@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  resources :orders
+
+  resources :delivery_men
+
+  resources :restaurants
+
+  devise_for :users, :skip => [:sessions]
+  as :user do
+    get    'sign_in'   => 'devise/sessions#new',       :as => :new_user_session
+    post   'sign_in'   => 'devise/sessions#create',    :as => :user_session
+    delete 'sign_out'  => 'devise/sessions#destroy',   :as => :destroy_user_session
+
+    get    'sign_up'  => 'devise/registrations#new'#,  :as => :new_user_registration
+  end  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
