@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  resources :users, only: [:index]
+
   resources :orders
 
   resources :delivery_men
@@ -18,6 +21,8 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+  root to: 'orders#index'
+  # root to: 'visitors#index'  
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
