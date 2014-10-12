@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20140918201342) do
     t.string   "address"
     t.float    "price"
     t.integer  "amount"
-    t.integer  "restaurant_id"
+    t.integer  "restaurant_id",   null: false
     t.integer  "delivery_man_id"
     t.string   "status"
     t.datetime "created_at"

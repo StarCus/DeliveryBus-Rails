@@ -1,10 +1,15 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :assign]
 
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @user = current_user
+    if @user.role == "restaurant"  
+      @orders = @user.restaurant.orders
+    else
+      @orders = Order.all
+    end
   end
 
   # GET /orders/1
@@ -25,6 +30,8 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
+    @order.restaurant = current_user.restaurant
+    @order.status = "ready"
 
     respond_to do |format|
       if @order.save
@@ -61,6 +68,22 @@ class OrdersController < ApplicationController
     end
   end
 
+  # POST /orders/assign
+  def assign
+    @order.delivery_man = current_user.delivery_man
+    if @order.save
+      respond_to do |format|
+        format.html { redirect_to @order, notice: "Successed" }
+        format.json { render :show, status: :ok, location: @order }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to @order, notice: "Error" }
+        format.json { render :show, status: :ok, location: @order }
+      end
+    end      
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
@@ -69,6 +92,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params[:order]
+      params[:order].permit(:address, :amount, :price)
     end
 end

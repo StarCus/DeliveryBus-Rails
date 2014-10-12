@@ -11,6 +11,19 @@
     </div>
   <% end %>
 
+  <div class="field">
+    <label>地址</label><br>
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <label>数量</label><br>
+    <%= f.number_field :amount %>
+  </div>
+  <div class="field">
+    <label>总价</label><br>
+    <%= f.text_field :price %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

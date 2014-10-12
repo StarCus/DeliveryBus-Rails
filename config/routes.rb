@@ -2,7 +2,11 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index]
 
-  resources :orders
+  resources :orders do 
+    member do 
+      post 'assign'
+    end
+  end
 
   resources :delivery_men
 

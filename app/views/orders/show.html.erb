@@ -1,4 +1,28 @@
 <p id="notice"><%= notice %></p>
 
+<div>
+  <label>餐厅: </label>
+  <%= @order.restaurant.id %>
+</div>
+<div>
+  <label>目的地: </label>
+  <%= @order.address %>
+</div>
+<div>
+  <label>数量: </label>
+  <%= @order.amount %>
+</div>
+<div>
+  <label>价钱: </label>
+  <%= @order.price %>
+</div>
+<div>
+  <label>外卖员号: </label>
+  <%= @order.delivery_man.id if @order.delivery_man %>
+</div>
+<div>
+  <label>状态: </label>
+  <%= @order.status %>
+</div>
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>

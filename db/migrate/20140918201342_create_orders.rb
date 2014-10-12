@@ -4,7 +4,7 @@ class CreateOrders < ActiveRecord::Migration
       t.string :address
       t.float :price
       t.integer :amount
-      t.belongs_to :restaurant
+      t.belongs_to :restaurant, null: false
       t.belongs_to :delivery_man
       t.string :status
 
