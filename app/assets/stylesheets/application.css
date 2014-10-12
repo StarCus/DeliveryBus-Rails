@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+
+.app-container{
+  width: 1180px;
+  background-color:#fff;
+  margin:0 auto 0px;
+  padding-top:50px;
+  border: solid 1px #f1f1f1; 
+  min-height: 500px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.05) ;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.app-container-inner{
+  /* background-color:#fff; */
+  margin-bottom:50px;
+  padding-bottom:50px;
+}

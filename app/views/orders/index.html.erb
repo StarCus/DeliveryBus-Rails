@@ -1,47 +1,49 @@
-<% if @user.role == "restaurant" %>
-  <h1>我的订单</h1>
-<% else %>
-  <h1>订单列表</h1>
-<% end %>
+<div class="container app-container-inner">
+  <% if @user.role == "restaurant" %>
+    <h3>我的订单</h1>
+  <% else %>
+    <h3>订单列表</h1>
+  <% end %>
 
 
-<table>
-  <thead>
-    <tr>
-      <th>订单号</th>
-      <th>目的地</th>
-      <th>数量</th>
-      <th>价格</th>
-      <th>状态</th>
-      <th colspan="2"></th>
-      <% if @user.role == "restaurant" %>
-        <th></th>
-      <% end %>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @orders.each do |order| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= order.id %></td>
-        <td><%= order.address %></td>
-        <td><%= order.amount %></td>
-        <td><%= order.price %></td>
-        <td><%= order.status %></td>
-        <td><%= link_to '显示详情', order %></td>
+        <th>订单号</th>
+        <th>目的地</th>
+        <th>数量</th>
+        <th>价格</th>
+        <th>状态</th>
+        <th colspan="2"></th>
         <% if @user.role == "restaurant" %>
-          <td><%= link_to '编辑', edit_order_path(order) %></td>
-          <td><%= link_to '取消订单', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% else %>
-          <td><%= link_to "分配给我", assign_order_path(order), method: :post %></td>
+          <th></th>
         <% end %>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= order.id %></td>
+          <td><%= order.address %></td>
+          <td><%= order.amount %></td>
+          <td><%= order.price %></td>
+          <td><%= order.status %></td>
+          <td><%= link_to '显示详情', order %></td>
+          <% if @user.role == "restaurant" %>
+            <td><%= link_to '编辑', edit_order_path(order) %></td>
+            <td><%= link_to '取消订单', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% else %>
+            <td><%= link_to "分配给我", assign_order_path(order), method: :post %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<% if @user.role == "restaurant" %>
-  <%= link_to '新建订单', new_order_path %>
-<% end %>
+  <br>
+
+  <% if @user.role == "restaurant" %>
+    <%= link_to '新建订单', new_order_path %>
+  <% end %>
+</div>
