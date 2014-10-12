@@ -6,44 +6,43 @@
   <% end %>
 
 
-  <table>
+  <table class="table table-main">
     <thead>
       <tr>
         <th>订单号</th>
-        <th>目的地</th>
+        <th>地址</th>
         <th>数量</th>
+        <th>付款方式</th>
         <th>价格</th>
         <th>状态</th>
-        <th colspan="2"></th>
-        <% if @user.role == "restaurant" %>
-          <th></th>
-        <% end %>
+        <th>操作</th>
       </tr>
     </thead>
 
-    <tbody>
-      <% @orders.each do |order| %>
+    <tbody class="table-main-body">
+      <% @orders.each_with_index do |order, index| %>
+        <% if index % 2 == 1 %>
+        <tr class="alt">
+        <% else %>
         <tr>
+        <% end %>
           <td><%= order.id %></td>
-          <td><%= order.address %></td>
+          <td class="text-left"><%= order.address %></td>
           <td><%= order.amount %></td>
           <td><%= order.price %></td>
+          <td>现金支付</td>
           <td><%= order.status %></td>
-          <td><%= link_to '显示详情', order %></td>
+          <td><%= link_to '显示详情', order %>
           <% if @user.role == "restaurant" %>
-            <td><%= link_to '编辑', edit_order_path(order) %></td>
-            <td><%= link_to '取消订单', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <%= link_to '编辑', edit_order_path(order) %>
+            <%= link_to '取消订单', order, method: :delete, data: { confirm: 'Are you sure?' } %>
           <% else %>
-            <td><%= link_to "分配给我", assign_order_path(order), method: :post %></td>
+            <%= link_to "分配给我", assign_order_path(order), method: :post %>
           <% end %>
+        </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 
-  <br>
-
-  <% if @user.role == "restaurant" %>
-    <%= link_to '新建订单', new_order_path %>
-  <% end %>
 </div>
