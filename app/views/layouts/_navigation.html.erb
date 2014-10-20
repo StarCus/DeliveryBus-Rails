@@ -26,7 +26,7 @@
       </ul>
     </li>
     </ul> -->
-    <% if current_user.role == "restaurant" %>
+    <% if current_user && current_user.role == "restaurant" %>
       <span class="navbar-new-order">
         <%= link_to '新建订单', new_order_path %>
       </span>    
@@ -52,7 +52,7 @@
       </ul> -->
       <div class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-          <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
+          <li><%= link_to '登出', destroy_user_session_path, :method=>'delete' %></li>
         <% end %>
       </div>
     </div>
