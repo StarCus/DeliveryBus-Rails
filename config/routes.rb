@@ -24,7 +24,9 @@ Rails.application.routes.draw do
   namespace :api , defaults: {format: :json} do
     namespace :v1 do
       resources :sessions, only: [:create, :destroy] do 
-        post 'login' => 'sessions#login'
+        collection do 
+          post 'login' => 'sessions#login'
+        end
       end
     end
   end
