@@ -25,7 +25,30 @@ class Api::V1::SessionsController < Api::V1::ApiController
   # Login
   # POST /api/v1/sessions/login
   def login
+    email = user_params[:email]
+    password = user_params[:password]
 
+    user = User.find_by_email(email)
+    if not user 
+      render json: {
+        msg: "User does not exist.",
+        identifier: "USER_NOT_EXIST"
+      }, status: :unprocessable_entity
+    elsif not user.valid_password? password 
+      render json: {
+        msg: "Password incorrect.",
+        identifier: "INVALID_PASSWORD"
+      }, status: :unauthorized
+    else
+      token = Token.find_or_create(user.id)
+
+      render json: {
+        msg: "Success",
+        code: "SUCCESS",
+        user: user.as_json,
+        token: token
+      }
+    end
   end
 
   # Logout

@@ -9,6 +9,16 @@ class User < ActiveRecord::Base
 
   after_create :set_required_fields
 
+  def as_json(options = {})
+    json = super.as_json()
+    if self.restaurant
+      json[:restaurant] = self.restaurant.as_json
+    else 
+      json[:delivery_man] = self.delivery_man.as_json
+    end
+    return json
+  end
+
   private
 
   def set_required_fields
@@ -17,6 +27,7 @@ class User < ActiveRecord::Base
       restaurant.user = self
       restaurant.save
     else
+      self.role = "delivery_man"
       delivery_man = DeliveryMan.new
       delivery_man.user = self
       delivery_man.save
