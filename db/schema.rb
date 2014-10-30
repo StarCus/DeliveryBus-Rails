@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20141030160232) do
 
   create_table "tokens", force: true do |t|
     t.string   "access_token"
-    t.integer  "user_id"
+    t.integer  "delivery_man_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
