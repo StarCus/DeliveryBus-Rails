@@ -44,3 +44,6 @@ gem 'spring',        group: :development
 group :development do 
   gem 'capistrano', "~> 2.14.2"
 end
+
+# Active Admin
+gem 'activeadmin', github: 'activeadmin'
