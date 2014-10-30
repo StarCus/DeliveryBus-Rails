@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   def index
     @user = current_user
     if @user.role == "restaurant"  
-      @orders = @user.restaurant.orders
+      @orders = @user.restaurant.orders.order("created_at DESC")
     else
       @orders = Order.all
     end
@@ -35,7 +35,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        format.html { redirect_to orders_path, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
@@ -92,6 +92,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params[:order].permit(:address, :amount, :price)
+      params[:order].permit(:address, :amount, :price, :payment_method)
     end
 end

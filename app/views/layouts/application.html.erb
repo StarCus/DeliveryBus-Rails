@@ -9,9 +9,13 @@
   <body>
     <header>
       <%= render 'layouts/navigation' %>
+      <%= render 'layouts/neworderbar' %>
     </header>    
-    <main role="main" class="app-container">
-      <div  style="position: relative;">
+    <div>
+
+    </div>
+    <main role="main" class="app-container new-order-bar-open">
+      <div style="position: relative;">
         <%= yield %>
       </div>
     </main>

@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20141021014952) do
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "payment_method"
   end
 
   create_table "restaurants", force: true do |t|

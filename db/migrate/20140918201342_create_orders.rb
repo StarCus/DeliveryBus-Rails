@@ -6,6 +6,7 @@ class CreateOrders < ActiveRecord::Migration
       t.integer :amount
       t.belongs_to :restaurant, null: false
       t.belongs_to :delivery_man
+      t.string :payment_method
       t.string :status
 
       t.timestamps

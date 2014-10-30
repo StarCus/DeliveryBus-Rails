@@ -1,0 +1,39 @@
+<div class="new-order-bar navbar-fixed-top">
+  <form accept-charset="UTF-8" action="/orders" class="new_order" id="new_order" method="post">
+    <div style="display:none">
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+    </div>
+    
+    <ul class="nav navbar-nav orderbar-list">
+      <li class="long-item">
+        <label>地址</label>
+        <br>
+        <input id="order_address" name="order[address]" type="text">
+      </li>
+      <li class="">
+        <label>数量</label>
+        <br>
+        <input id="order_amount" name="order[amount]" type="number" min="0">
+      </li>
+      <li class="">
+        <span>
+          <input id="order_payment_online" name="order[payment_method]" type="radio" value="online">在线支付<br>
+        </span>
+        <span>
+          <input id="order_payment_cash" name="order[payment_method]" type="radio" value="cash">现金支付
+        </span>
+      </li>
+      <li>
+        <label>价格</label>
+        <br>
+        <input id="order_price" name="order[price]" type="text">
+      </li>
+      <li>
+        <input name="commit" type="submit" value="确定" style="margin-top: 20px;">        
+      </li>
+      <li>
+        <%= link_to '取消', orders_path %>
+      </li>   
+    </ul>
+  </form>
+</div>
