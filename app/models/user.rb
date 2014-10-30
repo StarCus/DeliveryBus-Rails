@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   private
 
   def set_required_fields
+    self.username = self.email
     if role == "restaurant"
       restaurant = Restaurant.new
       restaurant.user = self
