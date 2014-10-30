@@ -5,11 +5,7 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @user = current_user
-    if @user.role == "restaurant"  
-      @orders = @user.restaurant.orders.order("created_at DESC")
-    else
-      @orders = Order.all
-    end
+    @orders = @user.orders.order("created_at DESC")
   end
 
   # GET /orders/1
@@ -30,8 +26,8 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-    @order.restaurant = current_user.restaurant
     @order.status = "ready"
+    @order.user = current_user
 
     respond_to do |format|
       if @order.save

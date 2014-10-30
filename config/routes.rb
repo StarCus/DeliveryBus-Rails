@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :delivery_men
 
-  resources :restaurants
+  # resources :restaurants
 
   devise_for :users, :skip => [:sessions]
   as :user do

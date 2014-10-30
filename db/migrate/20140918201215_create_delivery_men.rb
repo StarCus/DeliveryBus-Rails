@@ -3,7 +3,6 @@ class CreateDeliveryMen < ActiveRecord::Migration
     create_table :delivery_men do |t|
       t.string :name
       t.string :phone_number
-      t.belongs_to :user
       t.timestamps
     end
   end

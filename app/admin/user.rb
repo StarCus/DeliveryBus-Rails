@@ -1,11 +1,13 @@
 ActiveAdmin.register User do
 
   filter :email
-  filter :username
+  filter :restaurant_name
+  filter :location
 
   index do 
     column :email
-    column :username
+    column :restaurant_name
+    column :location
     actions
   end
 
@@ -25,6 +27,8 @@ ActiveAdmin.register User do
   form do |f|
     f.inputs "User Details" do 
       f.input :email
+      f.input :restaurant_name
+      f.input :location
       f.input :password
       f.input :password_confirmation
     end

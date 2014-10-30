@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 20141030021127) do
   create_table "delivery_men", force: true do |t|
     t.string   "name"
     t.string   "phone_number"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -61,18 +60,10 @@ ActiveRecord::Schema.define(version: 20141030021127) do
     t.string   "address"
     t.float    "price"
     t.integer  "amount"
-    t.integer  "restaurant_id",   null: false
+    t.integer  "user_id",         null: false
     t.integer  "delivery_man_id"
     t.string   "payment_method"
     t.string   "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "restaurants", force: true do |t|
-    t.string   "name"
-    t.string   "location"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -88,6 +79,8 @@ ActiveRecord::Schema.define(version: 20141030021127) do
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
+    t.string   "restaurant_name"
+    t.string   "location"
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"

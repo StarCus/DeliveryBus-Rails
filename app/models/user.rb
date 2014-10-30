@@ -4,34 +4,24 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_one :restaurant
+  has_many :orders
   has_one :delivery_man
 
-  after_create :set_required_fields
+  before_create :set_required_fields
 
-  def as_json(options = {})
-    json = super.as_json()
-    if self.restaurant
-      json[:restaurant] = self.restaurant.as_json
-    else 
-      json[:delivery_man] = self.delivery_man.as_json
-    end
-    return json
+  # def as_json(options = {})
+  #   json = super.as_json()
+  #   return json
+  # end
+
+  # For ActiveAdmin only
+  def name
+    self.restaurant_name
   end
 
   private
 
   def set_required_fields
-    self.username = self.email
-    if role == "restaurant"
-      restaurant = Restaurant.new
-      restaurant.user = self
-      restaurant.save
-    else
-      self.role = "delivery_man"
-      delivery_man = DeliveryMan.new
-      delivery_man.user = self
-      delivery_man.save
-    end
+    self.restaurant_name ||= self.email
   end
 end

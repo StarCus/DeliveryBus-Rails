@@ -5,7 +5,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-      <% if current_user && current_user.role == "restaurant" %>
+      <% if current_user %>
       <span class="navbar-new-order">
         <a href="#">新建订单</a>
         <%#= link_to '新建订单', new_order_path %>
