@@ -1,11 +1,5 @@
-# encoding: UTF-8
-ActiveAdmin.register Restaurant do
+ActiveAdmin.register DeliveryMan do
 
-  index do 
-    column :name
-    column :location
-    actions
-  end
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
