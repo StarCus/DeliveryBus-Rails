@@ -8,8 +8,8 @@ class Api::V1::ApiController < ActionController::Base
   end
 
   # Get Current Logged in User
-  def current_user
-    return nil unless @user = @token.user
+  def current_delivery_man
+    return nil unless @delivery_man = @token.delivery_man
   end
 
   def _not_authorized message = "Not Authorized"

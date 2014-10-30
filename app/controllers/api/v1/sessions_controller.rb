@@ -1,51 +1,52 @@
 class Api::V1::SessionsController < Api::V1::ApiController
   skip_before_filter :api_token_authenticate!, only: [:create, :login]
 
-  # Register a new user
+  # Register a new delivery_man
   # POST /api/v1/sessions
   # Params 
   # => user: email, password 
   # => delivery_man: phone_number, name
-  def create
-    user = User.new(user_params)
-    if user.save
-      user.delivery_man.update_attributes(delivery_man_params)
+  # def create
+  #   user = User.new(user_params)
+  #   if user.save
+  #     user.delivery_man.update_attributes(delivery_man_params)
 
-      render json: {
-        user: user,
-        token: Token.find_or_create(user.id),
-        msg: 'Successful created user.'
-      }
-    else
-      puts "#{user.errors}"
-      render json: {errors: user.errors}, status: :unprocessable_entity
-    end
-  end
+  #     render json: {
+  #       user: user,
+  #       token: Token.find_or_create(user.id),
+  #       msg: 'Successful created user.'
+  #     }
+  #   else
+  #     puts "#{user.errors}"
+  #     render json: {errors: user.errors}, status: :unprocessable_entity
+  #   end
+  # end
 
   # Login
   # POST /api/v1/sessions/login
   def login
-    email = user_params[:email]
-    password = user_params[:password]
+    phone_number = delivery_man_params[:phone_number]
+    password = delivery_man_params[:password]
+    name = delivery_man_params[:name]
 
-    user = User.find_by_email(email)
-    if not user 
+    delivery_man = DeliveryMan.find_by_phone_number(phone_number)
+    if not delivery_man
       render json: {
         msg: "User does not exist.",
         identifier: "USER_NOT_EXIST"
       }, status: :unprocessable_entity
-    elsif not user.valid_password? password 
+    elsif not delivery_man.authenticate password 
       render json: {
         msg: "Password incorrect.",
         identifier: "INVALID_PASSWORD"
       }, status: :unauthorized
     else
-      token = Token.find_or_create(user.id)
+      token = Token.find_or_create(delivery_man.id)
 
       render json: {
         msg: "Success",
         code: "SUCCESS",
-        user: user.as_json,
+        delivery_man: delivery_man,
         token: token
       }
     end
@@ -73,12 +74,8 @@ class Api::V1::SessionsController < Api::V1::ApiController
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def user_params
-    params.require(:user).permit(:email, :password)
-  end
-
   def delivery_man_params
-    params.require(:delivery_man).permit(:phone_number, :name)
+    params.require(:delivery_man).permit(:phone_number, :name, :password)
   end
 
 end

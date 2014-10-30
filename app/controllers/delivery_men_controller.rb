@@ -69,6 +69,6 @@ class DeliveryMenController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def delivery_man_params
-      params[:delivery_man]
+      params[:delivery_man].permit(:phone_number, :name, :password, :password_confirmation)
     end
 end
