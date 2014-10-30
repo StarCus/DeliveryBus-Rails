@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20141030160232) do
   create_table "delivery_men", force: true do |t|
     t.string   "name"
     t.string   "phone_number"
+    t.string   "status",          default: "available"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"
@@ -82,6 +83,7 @@ ActiveRecord::Schema.define(version: 20141030160232) do
     t.string   "email",                  default: "", null: false
     t.string   "restaurant_name"
     t.string   "location"
+    t.string   "phone_number"
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"

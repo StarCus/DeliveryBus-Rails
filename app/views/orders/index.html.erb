@@ -31,14 +31,18 @@
             <td><%= order.amount %></td>
             <td><%= order.price %></td>
             <td>现金支付</td>
-            <td><%= order.status %></td>
+            <td>
+              <% if order.status == "pending" %>
+                <span class="status-tag pending">待分配</span>
+              <% elsif order.status == "in_progress" %>
+                <span class="status-tag in-progress">运送中</span>
+              <% else %>
+                <span class="status-tag done">完成</span>
+              <% end %>
+            </td>
             <td><%= link_to '显示详情', order %>
-            <% if @user.role == "restaurant" %>
               <%= link_to '编辑', edit_order_path(order) %>
               <%= link_to '取消订单', order, method: :delete, data: { confirm: 'Are you sure?' } %>
-            <% else %>
-              <%= link_to "分配给我", assign_order_path(order), method: :post %>
-            <% end %>
           </td>
           </tr>
         <% end %>

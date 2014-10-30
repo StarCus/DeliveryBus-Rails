@@ -11,6 +11,8 @@ ActiveAdmin.register Order do
     actions
   end
 
+  permit_params :address, :price, :amount, :payment_method
+
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #

@@ -1,3 +1,4 @@
+# Status: available, busy
 class DeliveryMan < ActiveRecord::Base
   has_many :orders
 

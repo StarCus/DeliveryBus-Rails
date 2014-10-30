@@ -5,6 +5,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :email,              default: "", null: false
       t.string :restaurant_name
       t.string :location
+      t.string :phone_number
 
       # t.string :phone_number,       default: ""
       t.string :encrypted_password, null: false, default: ""

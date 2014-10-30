@@ -26,7 +26,6 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-    @order.status = "ready"
     @order.user = current_user
 
     respond_to do |format|

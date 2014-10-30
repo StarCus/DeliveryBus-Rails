@@ -92,3 +92,21 @@
   width: 150px;
 }
 
+.status-tag {
+  color: #fff;
+  letter-spacing: 0.15em;
+  padding: 3px 5px 3px 5px;
+  font-size: 0.8em;
+}
+
+.status-tag.pending {
+  background: #cacaca;
+}
+
+.status-tag.in-progress {
+  background: #e29b20;
+}
+
+.status-tag.done {
+  background: #8daa92;
+}

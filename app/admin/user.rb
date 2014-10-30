@@ -6,6 +6,7 @@ ActiveAdmin.register User do
 
   index do 
     column :email
+    column :phone_number
     column :restaurant_name
     column :location
     actions
@@ -24,9 +25,12 @@ ActiveAdmin.register User do
   #   permitted
   # end
 
+  permit_params :email, :phone_number, :restaurant_name, :password, :password_confirmation
+
   form do |f|
     f.inputs "User Details" do 
       f.input :email
+      f.input :phone_number
       f.input :restaurant_name
       f.input :location
       f.input :password

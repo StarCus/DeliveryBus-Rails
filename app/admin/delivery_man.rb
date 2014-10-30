@@ -1,8 +1,19 @@
+# encoding: UTF-8
 ActiveAdmin.register DeliveryMan do
 
   index do 
     column :phone_number
     column :name
+    column :status, :sortable => :status do |man|
+      if man.status == "available"
+        tag_name = "空闲"
+        tag_type = :ok
+      else
+        tag_name = "忙碌"
+        tag_type = :warning
+      end
+      status_tag(tag_name, tag_type)
+    end
   end
 
   form do |f|
