@@ -32,8 +32,8 @@
   padding-bottom:50px;
 }
 
-.app-container.new-order-bar-open {
-  padding-top: 130px;
+.app-container .new-order-bar-open {
+  padding-top: 80px;
 }
 
 .table.table-main {
