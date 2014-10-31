@@ -9,7 +9,11 @@ class Api::V1::ApiController < ActionController::Base
 
   # Get Current Logged in User
   def current_delivery_man
-    return nil unless @delivery_man = @token.delivery_man
+    if @delivery_man = @token.delivery_man
+      @delivery_man
+    else
+      nil
+    end
   end
 
   def _not_authorized message = "Not Authorized"

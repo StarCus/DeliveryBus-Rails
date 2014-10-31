@@ -22,6 +22,15 @@ class Api::V1::SessionsController < Api::V1::ApiController
   #   end
   # end
 
+  # If client already logged in, call this method to update client
+  def pull
+    render json: {
+      delivery_man: current_delivery_man,
+      msg: "Success", 
+      identifier: "SUCCESS"
+    }
+  end
+
   # Login
   # POST /api/v1/sessions/login
   def login
