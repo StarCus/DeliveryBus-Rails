@@ -2,15 +2,27 @@
 class DeliveryMan < ActiveRecord::Base
   has_many :orders
   has_many :current_orders, -> { where status: "in_progress" }, class_name: 'Order'
+  # has_many :pending_orders, -> { where status: "pending"}, class_name: 'Order'
 
   has_secure_password
 
   def get_current_orders
     if self.status == "busy"
-      self.current_orders
+      current_orders = self.current_orders
     else
-      # TODO Fetch orders from order list
+      current_orders = Order.where(:status => "pending").order("created_at ASC").limit(10).each do |order|
+        order.status = "in_progress"
+        order.delivery_man = self
+        order.save
+      end
     end
+
+    if current_orders.count == 0
+      self.update_attributes(:status => "available")
+    else
+      self.update_attributes(:status => "busy")
+    end
+    return current_orders
   end
 
 end
