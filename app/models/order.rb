@@ -32,4 +32,12 @@ class Order < ActiveRecord::Base
       self.save
     end
   end
+
+  def address_name
+    if self.address
+      return self.address.name
+    else
+      return ""
+    end
+  end
 end

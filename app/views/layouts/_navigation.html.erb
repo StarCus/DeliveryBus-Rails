@@ -12,11 +12,15 @@
       </button>    
       <% end %>
       
-      <div class="nav navbar-nav navbar-right">
-        <% if user_signed_in? %>
-          <li><%= link_to '登出', destroy_user_session_path, :method=>'delete' %></li>
-        <% end %>
-      </div>
+      <ul class="nav navbar-nav pull-right">
+        <li><a href="#">我的餐厅</a></li>
+        <li><a href="/sign_out" data-method="delete" rel="nofollow">登出</a></li>
+      </ul>
+      <!-- <div class="nav navbar-nav navbar-right">
+        <%#if user_signed_in? %>
+          <li><%#= link_to '登出', destroy_user_session_path, :method=>'delete' %></li>
+        <%# end %>
+      </div> -->
     </div>
     <!-- /.navbar-collapse -->
   </div>
