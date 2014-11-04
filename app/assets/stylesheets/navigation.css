@@ -15,19 +15,17 @@
   /*color: #fff;*/
 }
 
-.navbar-inverse .navbar-nav .navbar-new-order > a,
-.navbar-inverse .navbar-nav .navbar-new-order > a:hover {
+.navbar-inverse .navbar-nav .navbar-new-order {
   color: #fff; 
-  background-color: #777;
+  /*background-color: #777;*/
 
 }
 
-.navbar-new-order > a,
-.navbar-new-order > a:hover {
+.navbar-new-order  {
   top: 10px;
   left: 120px;
   display: block;
-  float: right;
+  /*float: right;*/
   text-decoration: none;
   position: absolute;
   
@@ -36,4 +34,6 @@
 
   color: #fff; 
   background-color: #777;
+  border-style: none;
+  outline: 0;
 }

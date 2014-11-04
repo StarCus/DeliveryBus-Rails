@@ -2,7 +2,7 @@
 class DeliveryMan < ActiveRecord::Base
   has_many :orders
   has_many :current_orders, -> { where status: "in_progress" }, class_name: 'Order'
-  # has_many :pending_orders, -> { where status: "pending"}, class_name: 'Order'
+  belongs_to :route
 
   has_secure_password
 

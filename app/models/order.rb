@@ -5,6 +5,8 @@ class Order < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :delivery_man
+  belongs_to :address
+  belongs_to :route
 
   # Assign this order to an available delivery man
   def assign
