@@ -67,7 +67,6 @@ ActiveRecord::Schema.define(version: 20141104011653) do
   end
 
   create_table "orders", force: true do |t|
-    t.string   "address"
     t.float    "price"
     t.integer  "amount"
     t.integer  "user_id",         null: false

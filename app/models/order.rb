@@ -1,12 +1,22 @@
 # Status: "in_progress", "pending", "done"
 class Order < ActiveRecord::Base
 
+  before_save :set_required_fields
   after_create :assign
 
   belongs_to :user
   belongs_to :delivery_man
   belongs_to :address
   belongs_to :route
+
+  def set_required_fields
+    # When new order created, it only set address
+    # We need to set route here
+    if address
+      route = address.route
+      self.route = route if route
+    end
+  end
 
   # Assign this order to an available delivery man
   def assign

@@ -4,6 +4,7 @@ ActiveAdmin.register DeliveryMan do
   index do 
     column :phone_number
     column :name
+    column :route
     column :status, :sortable => :status do |man|
       if man.status == "available"
         tag_name = "空闲"
@@ -27,7 +28,7 @@ ActiveAdmin.register DeliveryMan do
   end
 
 
-  permit_params :phone_number, :name, :password, :password_confirmation
+  permit_params :phone_number, :name, :password, :password_confirmation, :route_id
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
