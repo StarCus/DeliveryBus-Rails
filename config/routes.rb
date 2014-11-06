@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  resources :users, only: [:index]
+  resources :users
 
   resources :orders do 
     member do 
@@ -10,9 +10,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :delivery_men
-
-  # resources :restaurants
+  resources :restaurants
 
   devise_for :users, :skip => [:sessions]
   as :user do

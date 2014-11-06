@@ -47,3 +47,6 @@ end
 
 # Active Admin
 gem 'activeadmin', github: 'activeadmin'
+
+gem "carrierwave"
+gem "rmagick", require: false
