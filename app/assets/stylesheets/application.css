@@ -92,6 +92,10 @@
   width: 150px;
 }
 
+.orderbar-list .extra-long-item {
+  width: 250px;
+}
+
 .status-tag {
   color: #fff;
   letter-spacing: 0.15em;

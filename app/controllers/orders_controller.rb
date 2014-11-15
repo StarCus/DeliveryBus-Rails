@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @user = current_user
+    @addresses = Address.all.where.not(:route_id => nil)
     @orders = @user.orders.order("created_at DESC")
   end
 
@@ -27,6 +28,14 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.user = current_user
+
+    if address_params[:id].empty?
+      # Custom Address
+      address = Address.create(:name => address_params[:name])
+    else
+      address = Address.find(address_params[:id])
+    end
+    @order.address = address
 
     respond_to do |format|
       if @order.save
@@ -87,6 +96,10 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params[:order].permit(:address, :amount, :price, :payment_method)
+      params[:order].permit(:amount, :price, :payment_method)
+    end
+
+    def address_params
+      params[:address].permit(:id, :name)
     end
 end
