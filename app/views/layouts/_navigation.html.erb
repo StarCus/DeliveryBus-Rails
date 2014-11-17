@@ -10,12 +10,13 @@
         新建订单
         <%#= link_to '新建订单', new_order_path %>
       </button>    
-      <% end %>
+      
       
       <ul class="nav navbar-nav pull-right">
         <li><a href="/users/<%= current_user.id %>">我的餐厅</a></li>
         <li><a href="/sign_out" data-method="delete" rel="nofollow">登出</a></li>
       </ul>
+      <% end %>
       <!-- <div class="nav navbar-nav navbar-right">
         <%#if user_signed_in? %>
           <li><%#= link_to '登出', destroy_user_session_path, :method=>'delete' %></li>

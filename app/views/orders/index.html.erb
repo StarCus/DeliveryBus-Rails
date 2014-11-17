@@ -29,8 +29,16 @@
             <td><%= order.id %></td>
             <td class="text-left"><%= order.address_name %></td>
             <td><%= order.amount %></td>
-            <td><%= order.price %></td>
+            
+            <% if order.payment_method == "online" %>
+            <td>在线支付</td>
+            <td>---</td>
+            <% else %>
             <td>现金支付</td>
+            <td><%= order.price %></td>
+            <% end %>
+            
+            
             <td>
               <% if order.status == "pending" %>
                 <span class="status-tag pending">待分配</span>

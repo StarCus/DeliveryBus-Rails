@@ -40,7 +40,7 @@
         <input name="commit" type="submit" value="确定" style="margin-top: 20px;">        
       </li>
       <li>
-        <a class="button" href="/orders">取消</a>
+        <a class="button" href="/orders">重置</a>
       </li>   
     </ul>
   </form>
@@ -115,7 +115,7 @@
  
         $( "<a>" )
           .attr( "tabIndex", -1 )
-          .attr( "title", "Show All Items" )
+          .attr( "title", "显示地址列表" )
           .tooltip()
           .appendTo( this.wrapper )
           .button({
@@ -199,5 +199,15 @@
  
   $(function() {
     $( "#order_address" ).combobox();
+
+    $("#order_payment_online").change(function() {
+      $("#order_price").prop('disabled', true);
+      $("#order_price").prop('value', '---');
+    });
+
+    $("#order_payment_cash").change(function() {
+      $("#order_price").prop('disabled', false);
+      $("#order_price").prop('value', '');
+    });
   });
   </script>

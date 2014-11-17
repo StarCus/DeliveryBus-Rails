@@ -1,0 +1,13 @@
+<div>
+  <div>
+    <label style="margin-top: 20px;">餐厅名称: </label>
+    <%= @user.restaurant_name %>
+  </div>
+  <div>
+    <label>地点: </label>
+    <%= @user.location %>
+  </div>
+
+</div>
+
+<%= link_to '修改', edit_user_path(@user) %> 

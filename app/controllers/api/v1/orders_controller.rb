@@ -2,7 +2,9 @@ class Api::V1::OrdersController < Api::V1::ApiController
 
   # GET /api/v1/index
   def index
-    orders = current_delivery_man.get_current_orders
+    orders = current_delivery_man.get_current_orders.map { |order|
+      order.as_json
+    }
     render json: orders
   end
 

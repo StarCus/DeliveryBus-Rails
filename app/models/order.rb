@@ -40,4 +40,12 @@ class Order < ActiveRecord::Base
       return ""
     end
   end
+
+  def as_json(options={})
+    json = super.as_json()
+    json[:restaurant] = self.user.name
+    json[:address] = self.address_name
+    return json
+  end
+
 end

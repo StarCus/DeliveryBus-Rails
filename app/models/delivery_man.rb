@@ -25,4 +25,10 @@ class DeliveryMan < ActiveRecord::Base
     return current_orders
   end
 
+  def as_json(options={})
+    json = super.as_json()
+    json[:route] = self.route.as_json
+    return json
+  end
+
 end

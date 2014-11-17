@@ -15,12 +15,14 @@ ActiveAdmin.register DeliveryMan do
       end
       status_tag(tag_name, tag_type)
     end
+    actions
   end
 
   form do |f|
     f.inputs "Delivery Man Details" do 
       f.input :phone_number
       f.input :name
+      f.input :route
       f.input :password
       f.input :password_confirmation
     end
