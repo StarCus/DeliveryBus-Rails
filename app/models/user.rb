@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :orders
   has_one :delivery_man
 
-  before_create :set_required_fields
+  before_save :set_required_fields
 
   # def as_json(options = {})
   #   json = super.as_json()
@@ -22,6 +22,6 @@ class User < ActiveRecord::Base
   private
 
   def set_required_fields
-    self.restaurant_name ||= self.email
+
   end
 end

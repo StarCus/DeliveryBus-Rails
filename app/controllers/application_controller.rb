@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up).push(:role)
+    devise_parameter_sanitizer.for(:sign_up).push(:restaurant_name)
   end
 
   def custom_authentication!
