@@ -2,15 +2,12 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  resources :users
 
   resources :orders do 
     member do 
       post 'assign'
     end
   end
-
-  resources :restaurants
 
   devise_for :users, :skip => [:sessions]
   as :user do
@@ -20,6 +17,8 @@ Rails.application.routes.draw do
 
     get    'sign_up'  => 'devise/registrations#new'#,  :as => :new_user_registration
   end  
+
+  resources :users
 
   namespace :api , defaults: {format: :json} do
     namespace :v1 do
