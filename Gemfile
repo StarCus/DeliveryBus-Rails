@@ -50,3 +50,6 @@ gem 'activeadmin', github: 'activeadmin'
 
 gem "carrierwave"
 gem "rmagick", require: false
+
+# Android Push Notification
+gem 'pushmeup'

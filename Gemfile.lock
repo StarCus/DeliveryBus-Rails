@@ -87,6 +87,9 @@ GEM
       activesupport (>= 3.2, < 5)
     highline (1.6.21)
     hike (1.2.3)
+    httparty (0.13.3)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.6.11)
     inherited_resources (1.4.1)
       has_scope (~> 0.6.0.rc)
@@ -109,6 +112,7 @@ GEM
     mime-types (1.25.1)
     minitest (5.4.1)
     multi_json (1.10.1)
+    multi_xml (0.5.5)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
@@ -121,6 +125,9 @@ GEM
     polyamorous (1.1.0)
       activerecord (>= 3.0)
     polyglot (0.3.5)
+    pushmeup (0.3.0)
+      httparty
+      json
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -199,6 +206,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   pg
+  pushmeup
   rails (= 4.1.0)
   rmagick
   sass-rails (~> 4.0.3)
