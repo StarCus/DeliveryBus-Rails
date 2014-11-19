@@ -20,7 +20,17 @@ class Order < ActiveRecord::Base
 
   # Assign this order to an available delivery man
   def assign
-    delivery_man = DeliveryMan.find_by_status("available")
+    conditions = {
+      :status => "available"
+    }
+
+    if self.route
+      conditions[:route_id] = self.route.id
+    else 
+      conditions[:route_id] = nil
+    end
+
+    delivery_man = DeliveryMan.where(conditions).first
     if delivery_man
       delivery_man.update_attributes(:status => "busy")
       self.delivery_man = delivery_man

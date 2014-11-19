@@ -16,7 +16,18 @@ class DeliveryMan < ActiveRecord::Base
       current_orders = []
       total_amount = 0
 
-      orders = Order.where(:status => "pending").order("created_at ASC").each do |order|
+      # Where conditions
+      conditions = {
+        :status => "pending"
+      }
+
+      if self.route
+        conditions[:route_id] = self.route.id
+      else
+        conditions[:route_id] = nil
+      end
+
+      orders = Order.where(conditions).order("created_at ASC").each do |order|
         if total_amount + order.amount <= 20
           order.status = "in_progress"
           order.delivery_man = self
