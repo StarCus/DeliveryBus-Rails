@@ -4,16 +4,28 @@ class DeliveryMan < ActiveRecord::Base
   has_many :current_orders, -> { where status: "in_progress" }, class_name: 'Order'
   belongs_to :route
 
+  after_touch :refresh_availability
+
   has_secure_password
 
   def get_current_orders
     if self.status == "busy"
       current_orders = self.current_orders
     else
-      current_orders = Order.where(:status => "pending").order("created_at ASC").limit(10).each do |order|
-        order.status = "in_progress"
-        order.delivery_man = self
-        order.save
+      # Total Amount should be less than 20
+      current_orders = []
+      total_amount = 0
+
+      orders = Order.where(:status => "pending").order("created_at ASC").each do |order|
+        if total_amount + order.amount <= 20
+          order.status = "in_progress"
+          order.delivery_man = self
+          order.save
+          current_orders.push(order)
+          total_amount += order.amount
+        else
+          break
+        end
       end
     end
 
@@ -23,6 +35,14 @@ class DeliveryMan < ActiveRecord::Base
       self.update_attributes(:status => "busy")
     end
     return current_orders
+  end
+
+  def refresh_availability
+    if current_orders.count == 0
+      self.update_attributes(:status => "available")
+    else
+      self.update_attributes(:status => "busy")
+    end
   end
 
   def as_json(options={})

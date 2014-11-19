@@ -5,7 +5,7 @@ class Order < ActiveRecord::Base
   after_create :assign
 
   belongs_to :user
-  belongs_to :delivery_man
+  belongs_to :delivery_man, touch: true
   belongs_to :address
   belongs_to :route
 
