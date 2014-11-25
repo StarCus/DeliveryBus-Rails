@@ -1,6 +1,8 @@
 # Status: "in_progress", "pending", "done"
 class Order < ActiveRecord::Base
 
+  #validates :amount, presence: true
+
   before_save :set_required_fields
   after_create :assign
 

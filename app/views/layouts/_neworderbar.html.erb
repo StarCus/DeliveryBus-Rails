@@ -37,7 +37,7 @@
         <input id="order_price" name="order[price]" type="text">
       </li>
       <li>
-        <input name="commit" type="submit" value="确定" style="margin-top: 20px;">        
+        <input id="submit" name="commit" type="submit" value="确定" style="margin-top: 20px;">        
       </li>
       <li>
         <a class="button" href="/orders">重置</a>
@@ -199,7 +199,10 @@
  
   $(function() {
     $( "#order_address" ).combobox();
-
+    // $("#submit").prop("disabled", true);
+    $("#new_order").on("submit", function(){
+      $("#submit").prop("disabled", true)
+    });
     // $("#order_payment_online").change(function() {
     //   $("#order_price").prop('disabled', true);
     //   $("#order_price").prop('value', '---');

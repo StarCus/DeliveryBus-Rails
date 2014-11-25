@@ -1,11 +1,11 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy, :assign]
+  before_action :set_addresses, only: [:index, :edit, :update]
 
   # GET /orders
   # GET /orders.json
   def index
     @user = current_user
-    @addresses = Address.all.where.not(:route_id => nil)
     @orders = @user.orders.order("created_at DESC")
   end
 
@@ -51,6 +51,14 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
+    if address_params[:id].empty?
+      # Custom Address
+      address = Address.create(:name => address_params[:name])
+    else
+      address = Address.find(address_params[:id])
+    end
+    @order.address = address
+    
     respond_to do |format|
       if @order.update(order_params)
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }
@@ -92,6 +100,10 @@ class OrdersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = Order.find(params[:id])
+    end
+
+    def set_addresses
+      @addresses = Address.all.where.not(:route_id => nil)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

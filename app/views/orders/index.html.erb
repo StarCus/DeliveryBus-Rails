@@ -48,7 +48,7 @@
             </td>
             <td><%= link_to '显示详情', order %>
               <%= link_to '编辑', edit_order_path(order) %>
-              <%= link_to '取消订单', order, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to '取消订单', order, method: :delete, data: { confirm: '你确定取消订单吗？' } %>
           </td>
           </tr>
         <% end %>

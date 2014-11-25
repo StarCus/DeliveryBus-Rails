@@ -1,5 +1,10 @@
 ActiveAdmin.register Address do
 
+  controller do
+    def scoped_collection
+      Address.where.not(:name => "")
+    end
+  end
 
   index do 
     column :name
@@ -19,6 +24,4 @@ ActiveAdmin.register Address do
   #   permitted << :other if resource.something?
   #   permitted
   # end
-
-
 end

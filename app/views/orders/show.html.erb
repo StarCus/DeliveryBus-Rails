@@ -1,12 +1,10 @@
-<p id="notice"><%= notice %></p>
-
 <div>
-  <label>餐厅: </label>
+  <label>餐厅编号: </label>
   <%= @order.user.id %>
 </div>
 <div>
   <label>目的地: </label>
-  <%= @order.address %>
+  <%= @order.address_name %>
 </div>
 <div>
   <label>数量: </label>
@@ -22,7 +20,14 @@
 </div>
 <div>
   <label>状态: </label>
-  <%= @order.status %>
+  <% if @order.status == "pending" %>
+    <span class="status-tag pending">待分配</span>
+  <% elsif @order.status == "in_progress" %>
+    <span class="status-tag in-progress">运送中</span>
+  <% else %>
+    <span class="status-tag done">完成</span>
+  <% end %>
 </div>
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+
+<%= link_to '编辑', edit_order_path(@order) %> |
+<%= link_to '后退', orders_path %>
