@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141118041425) do
+ActiveRecord::Schema.define(version: 20141128185752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,15 @@ ActiveRecord::Schema.define(version: 20141118041425) do
     t.datetime "updated_at"
     t.string   "password_digest"
     t.integer  "route_id"
+  end
+
+  create_table "devices", force: true do |t|
+    t.string   "os_name",         default: "android"
+    t.string   "push_identifier",                     null: false
+    t.string   "status",          default: "offline"
+    t.integer  "delivery_man_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "orders", force: true do |t|

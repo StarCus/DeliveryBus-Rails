@@ -7,6 +7,33 @@ class OrdersController < ApplicationController
   def index
     @user = current_user
     @orders = @user.orders.order("created_at DESC")
+
+    total_amount = 0
+    total_price = 0
+    done = 0
+    pending = 0
+    in_progress = 0
+
+    @orders.each do |order|
+      total_amount += order.amount
+      total_price += order.price
+      case order.status
+      when "pending"
+        pending+=1
+      when "in_progress"
+        in_progress+=1
+      when "done"
+        done+=1
+      end
+    end
+    @summary = {
+      :amount => total_amount,
+      :price => total_price,
+      :done => done,
+      :pending => pending,
+      :in_progress => in_progress
+    }
+
   end
 
   # GET /orders/1

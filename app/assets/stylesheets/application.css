@@ -37,6 +37,7 @@
   padding-top: 80px;
 }
 
+/* Table Orders */
 .table.table-main {
   position: relative;
   border: 1px solid #2D2D2D;
@@ -65,6 +66,35 @@
 }
 
 .table.table-main .table-main-body > tr > td {
+  border: 1px solid #2D2D2D;
+}
+
+/* Table Order Summary */
+.table.table-summary {
+  position: relative;
+  border: 1px solid #2D2D2D;
+  border-spacing: 0; 
+  text-align: center;
+  width: 60%;
+}
+
+.table.table-summary > thead {
+  text-align: center;
+  background-color: #2D2D2D;
+  color: #fff;
+  border: none;
+}
+
+.table.table-summary > thead > tr > th {
+  text-align: center;
+}
+
+.table.table-summary .table-summary-body {
+  color: #5E5E5E;  
+  border: 1px solid #BDCCD4;
+}
+
+.table.table-summary .table-summary-body > tr > td {
   border: 1px solid #2D2D2D;
 }
 

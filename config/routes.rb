@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       end
 
       resources :orders
+      resources :devices, only: [:create]
     end
   end
 

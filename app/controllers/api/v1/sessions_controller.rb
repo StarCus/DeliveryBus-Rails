@@ -39,6 +39,7 @@ class Api::V1::SessionsController < Api::V1::ApiController
     name = delivery_man_params[:name]
 
     delivery_man = DeliveryMan.find_by_phone_number(phone_number)
+    
     if not delivery_man
       render json: {
         msg: "User does not exist.",
@@ -85,6 +86,10 @@ class Api::V1::SessionsController < Api::V1::ApiController
   # Never trust parameters from the scary internet, only allow the white list through.
   def delivery_man_params
     params.require(:delivery_man).permit(:phone_number, :name, :password)
+  end
+
+  def device_params
+    params.require(:device).permit(:push_identifier)
   end
 
 end
