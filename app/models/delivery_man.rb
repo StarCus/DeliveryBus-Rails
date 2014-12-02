@@ -2,6 +2,7 @@
 class DeliveryMan < ActiveRecord::Base
   has_many :orders
   has_many :current_orders, -> { where status: "in_progress" }, class_name: 'Order'
+  has_one :device
   belongs_to :route
 
   after_touch :refresh_availability
@@ -46,6 +47,10 @@ class DeliveryMan < ActiveRecord::Base
       self.update_attributes(:status => "busy")
     end
     return current_orders
+  end
+
+  def alert_new_orders
+    self.device.alert_new_orders if self.device
   end
 
   def refresh_availability

@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
     @orders = @user.orders.order("created_at DESC")
 
     total_amount = 0
-    total_price = 0
+    total_price = 0.0
     done = 0
     pending = 0
     in_progress = 0

@@ -14,6 +14,9 @@ class Order < ActiveRecord::Base
   def set_required_fields
     # When new order created, it only set address
     # We need to set route here
+    self.amount ||= 0
+    self.price ||= 0
+
     if address
       route = address.route
       self.route = route if route
@@ -38,7 +41,8 @@ class Order < ActiveRecord::Base
       self.delivery_man = delivery_man
       self.status = "in_progress"
       self.save
-      # Push to notify delivery man
+
+      delivery_man.alert_new_orders
     else
       self.status = "pending"
       self.save

@@ -24,6 +24,11 @@ class Api::V1::SessionsController < Api::V1::ApiController
 
   # If client already logged in, call this method to update client
   def pull
+    puts "Push identifier: #{push_params}"
+    if push_params != nil
+      device = Device.find_or_create(push_params, current_delivery_man)
+      device.login
+    end
     render json: {
       delivery_man: current_delivery_man,
       msg: "Success", 
@@ -52,6 +57,8 @@ class Api::V1::SessionsController < Api::V1::ApiController
       }, status: :unauthorized
     else
       token = Token.find_or_create(delivery_man.id)
+      device = Device.find_or_create(push_params, delivery_man)
+      device.login
 
       render json: {
         msg: "Success",
@@ -92,4 +99,7 @@ class Api::V1::SessionsController < Api::V1::ApiController
     params.require(:device).permit(:push_identifier)
   end
 
+  def push_params
+    params.require(:push_identifier)
+  end
 end
