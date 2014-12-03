@@ -2,11 +2,13 @@ class Device < ActiveRecord::Base
   belongs_to :delivery_man
 
   def self.find_or_create(identifier, delivery_man)
-    device = Device.find_by_push_identifier(identifier)
-    unless device
+    device = delivery_man.device
+    if device
+      device.push_identifier = identifier
+    else
       device = Device.new(:push_identifier => identifier)
+      device.delivery_man = delivery_man
     end    
-    device.delivery_man = delivery_man
     device.save
     return device
   end
@@ -18,7 +20,6 @@ class Device < ActiveRecord::Base
       :code => "NEW_ORDER"
     }
     GCM.send_notification(self.push_identifier, data)
-    puts "Send push notification"
   end
 
   def login

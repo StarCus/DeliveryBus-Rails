@@ -6,6 +6,15 @@
   <div>
     <h3>我的订单</h1>
 
+      <div class="switch-toggle switch-candy" style="width: 20%;">
+        <input id="candy1" name="candy" type="radio" value="today" checked>
+        <label for="candy1" onclick="">当日订单</label>
+
+        <input id="candy2" name="candy" type="radio" value="all">
+        <label for="candy2" onclick="">全部订单</label>
+
+        <a></a>
+      </div>
     <table class="table table-main">
       <thead>
         <tr>
@@ -82,3 +91,25 @@
 
   </div>
 </div>
+
+<script type="text/javascript">
+  // Change This Later
+  $("input:radio[name='candy']").click(function(){
+    window.location.replace("http://localhost:3000/orders?filter=" + $(this).val());
+    // $.ajax( {
+    //   type: "GET",
+    //   url: "/orders?filter=" + $(this).val(),
+    //   async: false,
+    //   success: function( response ) {
+    //     alert("Success" + response);
+    //   }
+    // });
+  });
+
+  var filter = "<%= @filter %>"
+  if (filter == "all") {
+    $("#cand2").prop("checked", true);
+  } else {
+    $("#cand1").prop("checked", true);
+  }
+</script>

@@ -6,7 +6,12 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @user = current_user
-    @orders = @user.orders.order("created_at DESC")
+    if (filter_params!="today")
+      @orders = @user.orders.order("created_at DESC")
+    else
+      @orders = []
+    end
+    @filter = filter_params
 
     total_amount = 0
     total_price = 0.0
@@ -140,5 +145,9 @@ class OrdersController < ApplicationController
 
     def address_params
       params[:address].permit(:id, :name)
+    end
+
+    def filter_params
+      params[:filter]
     end
 end

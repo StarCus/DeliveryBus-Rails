@@ -39,6 +39,7 @@
 
 /* Table Orders */
 .table.table-main {
+  margin-top: 10px;
   position: relative;
   border: 1px solid #2D2D2D;
   border-spacing: 0; 
